@@ -1,0 +1,28 @@
+[project]
+name = "db-scan"
+version = "0.1.0"
+description = "Inspect databases and data files; generate Markdown schema for LLM context."
+requires-python = ">=3.10"
+dependencies = [
+    "typer[all]>=0.12.0",
+    "rich>=13.7.0",
+    "sqlalchemy>=2.0.0",
+    "pandas>=2.2.0",
+    "openpyxl>=3.1.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+db-scan = "db_scan.main:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["db_scan"]
+
+[project.optional-dependencies]
+postgres = ["psycopg2-binary>=2.9.0"]
+mysql    = ["pymysql>=1.1.0"]
